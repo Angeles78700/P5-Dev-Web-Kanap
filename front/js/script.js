@@ -127,6 +127,6 @@ async function getProducts() {
      .then((data) => {
        const product = data;
        console.log(data);
-       const test = document getElementById :("card container");
+       const test = getElementById("card container");
      } 
 }
