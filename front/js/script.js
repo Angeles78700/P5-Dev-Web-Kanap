@@ -1,6 +1,6 @@
 console.log('ok');
 
-function getProducts() {
+async function getProducts() {
     // TODO : Récupérer les canaps avec la méthode fetch
     // fetch('http.../api/products').then()..
     const canaps = [
@@ -106,21 +106,20 @@ function getProducts() {
           "altTxt": "Photo d'un canapé rose, trois places"
         }
       ];
-
+      console.log( await fetchProducts());
 let productsHtml = ''
-      for (const canap in canaps) {
-      
-          const result = canaps[canap];
- '<a href="#">' + result.name + '</a>'
+      for (const canap of canaps) { 
+         productsHtml += `<a href="./product.html?id=${_id}">${canap.name}</a>`   
       }
-      console.log(productsHtml);
+      //console.log(productsHtml);
       document.getElementById('items').innerHTML = productsHtml
 }
 
 getProducts()
 
-async function getProducts() {
-  const url = new URL("http://localhost:3000/api/product");
+async function fetchProducts() {
+  return new Promise((resolve, reject)=>{
+  const url = new URL("http://localhost:3000/api/products");
   const params = {};
   let data = fetch (URL)
      .then((reponse) => reponse.json())
@@ -128,5 +127,6 @@ async function getProducts() {
        const product = data;
        console.log(data);
        const test = getElementById("card container");
-     } 
-}
+       resolve(data);
+     })
+    }     )}
